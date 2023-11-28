@@ -1,0 +1,1295 @@
+openapi: 3.0.1
+info:
+  title: SmashGrade
+  description: |-
+  version: 1.0.0
+tags:
+  - name: curriculum
+paths:
+  /curriculum:
+    get:
+      tags:
+        - curriculum
+      operationId: getCurriculums
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CurriculumRes'
+        '404':
+          description: not found
+    post:
+      tags:
+        - curriculum
+      operationId: postCurriculum
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CurriculumReq'
+      responses:
+        '200':
+          description: successful operation
+  /curriculum/{id}:
+    get:
+      tags:
+        - curriculum
+      operationId: getCurriculum
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurriculumRes'
+        '404':
+          description: not found
+    put:
+      tags:
+        - curriculum
+      operationId: putCurriculum
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CurriculumReq'
+      responses:
+        '200':
+          description: successful operation
+    delete:
+      tags:
+        - curriculum
+      operationId: deletePet
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: successful operation
+  /curriculum/filter:
+    get:
+      tags:
+        - curriculum
+      operationId: getCurriculumFilter
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurriculumFilter'
+
+
+
+  /module:
+    get:
+      tags:
+        - module
+      operationId: getModules
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ModuleRes'
+        '404':
+          description: not found
+    post:
+      tags:
+        - module
+      operationId: postmodule
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModuleReq'
+      responses:
+        '200':
+          description: successful operation
+  /module/{id}:
+    get:
+      tags:
+        - module
+      operationId: getmodule
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: version
+          in: query
+          description: default newest
+          required: false
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModuleRes'
+    put:
+      tags:
+        - module
+      operationId: putmodule
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: version
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModuleReq'
+      responses:
+        '200':
+          description: successful operation
+    delete:
+      tags:
+        - module
+      operationId: deletemodule
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+  /module/student/{studyStageId}:
+    get:
+      tags:
+        - module
+      operationId: getModuleStudent
+      parameters:
+        - name: studyStageId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 3
+          description: 1 = Grundstudium, 2 = Fachstudium, 3 = Schwerpunktstudium
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ModuleRes'
+  /module/teacher/{studyStageId}:
+    get:
+      tags:
+        - module
+      operationId: getModuleTeacher
+      parameters:
+        - name: studyStageId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 3
+          description: 1 = Grundstudium, 2 = Fachstudium, 3 = Schwerpunktstudium
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ModuleRes'
+  /module/filter:
+    get:
+      tags:
+        - module
+      operationId: getModuleFilter
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ModuleFilter'
+
+
+                                
+
+  /course:
+    get:
+      tags:
+        - course
+      operationId: getcourses
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CoursesRes'
+        '404':
+          description: not found
+    post:
+      tags:
+        - course
+      operationId: postcourse
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CourseReqPost'
+      responses:
+        '200':
+          description: successful operation
+  /course/{id}:
+    get:
+      tags:
+        - course
+      operationId: getcourse
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: version
+          in: query
+          description: default newest
+          required: false
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseRes'
+        '404':
+          description: not found
+    put:
+      tags:
+        - course
+      operationId: putcourse
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CourseReqPut'
+      responses:
+        '200':
+          description: successful operation
+    delete:
+      tags:
+        - course
+      operationId: deletecourse
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: successful operation
+  /course/{id}/student:
+    get:
+      tags:
+        - course
+      operationId: getcourseteilnehmer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseResStudent'
+        '404':
+          description: not found
+  /course/{id}/teacher:
+    get:
+      tags:
+        - course
+      operationId: getcourseTeacher
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseResTeacher'
+        '404':
+          description: not found
+  /course/filter:
+    get:
+      tags:
+        - course
+      operationId: courseFilter
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseFilter'
+  /exam:
+    get:
+      tags:
+        - exam
+      operationId: getexams
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExamRes'
+        '404':
+          description: not found
+    post:
+      tags:
+        - exam
+      operationId: postexam
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExamReq'
+      responses:
+        '200':
+          description: successful operation
+  /exam/{id}:
+    get:
+      tags:
+        - exam
+      operationId: getexam
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExamRes'
+        '404':
+          description: not found
+    put:
+      tags:
+        - exam
+      operationId: putexam
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExamReq'
+      responses:
+        '200':
+          description: successful operation
+    delete:
+      tags:
+        - exam
+      operationId: deleteexam
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: successful operation
+  /exam/{id}/student:
+    post:
+      tags:
+        - exam
+      operationId: postExamStudent
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          applicataion/json:
+            schema:
+              $ref: '#/components/schemas/ExamReqStudent'
+      responses:
+        '202':
+          description: successful operation
+  /exam/{id}/teacher:
+    post:
+      tags:
+        - exam
+      operationId: postExamTeacher
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          applicataion/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ExamReqStudent'
+      responses:
+        '202':
+          description: successful operation
+  /onboarding:
+    post:
+      tags:
+        - onboarding
+      operationId: postOnboarding
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OnboardingReq'
+      responses:
+        '200':
+          description: successful operation
+  /onboarding/{id}:
+    put:
+      tags:
+        - onboarding
+      operationId: putOnboarding
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OnboardingReq'
+      responses:
+        '200':
+          description: successful operation
+  /onboarding/filter:
+    get:
+      tags: 
+        - onboarding
+      operationId: getOnboardingFilter
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OnboardingFilter'        
+
+  /user:
+    get:
+      tags:
+        - user
+      operationId: getUsers
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      tags:
+        - user
+      operationId: postUser
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: successful operation
+  /user/{userId}:
+    get:
+      tags:
+        - user
+      operationId: getuser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    put:
+      tags:
+        - user
+      operationId: putuser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: successful operation
+    delete:
+      tags:
+        - user
+      operationId: deleteuser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: successful operation
+  /user/{userId}/course:
+    get:
+      tags:
+        - user
+      operationId: usergetcourse
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CourseRes'
+        '404':
+          description: not found
+  /user/{userId}/exam:
+    get:
+      tags:
+        - user
+      operationId: usergetexams
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExamRes'
+        '404':
+          description: not found
+  /user/{userId}/exam/{examId}:
+    get:
+      tags:
+        - user
+      operationId: usergetexam
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: examId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExamRes'
+        '404':
+          description: not found
+
+components:
+  schemas:
+    OnboardingReq:
+      type: object
+      properties:
+        curriculumRef:
+          type: integer
+          format: int64
+          example: 1
+        startYear:
+          type: integer
+          example: 2023
+    OnboardingFilter:
+      type: object
+      properties:
+        curriculumTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CurriculumType'
+        curriculums:
+          type: array
+          items:
+            $ref: '#/components/schemas/Curriculum'
+    Curriculum:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        focus:
+          type: string
+          example: Softwareentwicklung
+        field:
+          type: string
+          example: Informatik
+        curriculumType:
+          type: string
+          example: Berufsbegleitend
+        isActiv:
+          type: boolean
+          example: true
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+    CurriculumRes:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        focus:
+          type: string
+          example: Softwareentwicklung
+        field:
+          type: string
+          example: Informatik
+        curriculumType:
+          type: string
+          example: Berufsbegleitend
+        isActiv:
+          type: boolean
+          example: true
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        fieldmanagers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fieldmanager'
+        modules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModuleRes'
+    CurriculumReq:
+      type: object
+      properties:
+        focus:
+          type: string
+          example: Softwareentwicklung
+        field:
+          type: string
+          example: Informatik
+        curriculumType:
+          type: string
+          example: Berufsbegleitend
+        isActiv:
+          type: boolean
+          example: true
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        fieldmanagersRef:
+          type: array
+          items:
+            type: integer
+            format: int64
+          example:
+            - 8
+            - 12
+            - 15
+        modulesRef:
+          type: array
+          items:
+            type: integer
+            format: int64
+          example:
+            - 2
+            - 3
+    CurriculumFilter:
+      type: object
+      properties:
+        TBD:
+          type: string
+          example: NOCH OFFEN
+        curriculumTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CurriculumType'
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        focuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Focus'
+            
+
+    CurriculumType:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: Vollzeit
+        durationYears:
+          type: integer
+          format: int64
+          example: 3
+
+    Focus:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        fieldRef:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: Softwareentwicklung
+    Field:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: Softwareentwicklung
+        
+    Module:
+      type: object     
+      properties:
+        id:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: Schnittstellen-Technologien
+        number:
+          type: string
+        isActiv:
+          type: boolean
+          example: true
+    ModuleRes:
+      type: object     
+      properties:
+        id:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: Schnittstellen-Technologien
+        number:
+          type: string
+        isActiv:
+          type: boolean
+          example: true
+        studyStage:
+          $ref: '#/components/schemas/StudyStage'
+        valuationCategory:
+          $ref: '#/components/schemas/ValuationCategory'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/CourseRes'
+
+    ModuleReq:
+      type: object     
+      properties:
+        description:
+          type: string
+          example: Schnittstellen-Technologien
+        number:
+          type: string
+        isActiv:
+          type: boolean
+          example: true
+        valuationCategory:
+          $ref: '#/components/schemas/ValuationCategory'
+        coursesRef:
+          type: array
+          items:
+            type: integer
+            format: int64
+
+    ModuleFilter:
+      type: object     
+      properties:
+        TBD:
+          type: string
+          example: NOCH OFFEN
+        studyStages:
+          type: array
+          items:
+            $ref: '#/components/schemas/StudyStage'
+
+
+
+
+    StudyStage:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: Fachstudium
+    ValuationCategory:
+      type: object
+      properties:
+        description:
+          type: string
+        code: 
+          type: string
+          example: E
+    CoursesRes:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: Projektmanagement
+        number:
+          type: string
+          example: 3.121
+        versions:
+          type: array
+          items:
+            oneOf:
+              - type: integer
+                format: int64
+    CourseRes:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: Projektmanagement
+        number:
+          type: string
+          example: 3.121
+        versions:
+          type: array
+          items:
+            oneOf:
+              - type: integer
+                format: int64
+        modules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Module'
+        exams:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExamRes'
+        teachers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Teacher'
+    CourseResStudent:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: Projektmanagement
+        number:
+          type: string
+          example: 3.121
+        exams:
+          type: array
+          items:
+            $ref: '#/components/schemas/CourseExamStudent'
+    CourseResTeacher:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: Projektmanagement
+        number:
+          type: string
+          example: 3.121
+        exams:
+          type: array
+          items:
+            $ref: '#/components/schemas/CourseExamTeacher'
+    CourseReqPut:
+      type: object
+      properties:
+        version:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: Projektmanagement
+        number:
+          type: string
+          example: 3.121
+        moduleRef:
+          type: array
+          items:
+            oneOf:
+              - type: integer
+        teacherRef:
+          type: array
+          items:
+            oneOf:
+              - type: integer
+        exams:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExamRes'
+    CourseReqPost:
+      type: object
+      properties:
+        description:
+          type: string
+          example: Projektmanagement
+        number:
+          type: string
+          example: 3.121
+        moduleRef:
+          type: array
+          items:
+            oneOf:
+              - type: integer
+        teacherRef:
+          type: array
+          items:
+            oneOf:
+              - type: integer
+        exams:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExamRes'
+    CourseFilter:
+      type: object     
+      properties:
+        modules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Module'
+        teachers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Teacher'
+    ExamRes:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: Projektarbeit
+        weight:
+          type: integer
+          format: float
+          example: 0.3
+        type:
+          type: string
+          example: Schritfliche Arbeit
+    ExamReq:
+      type: object
+      properties:
+        description:
+          type: string
+          example: Projektarbeit
+        weight:
+          type: integer
+          format: float
+          example: 0.3
+        type:
+          type: string
+          example: Schritfliche Arbeit
+    ExamReqStudent:
+      type: object
+      properties:
+        grade:
+          type: integer
+          format: float64
+          example: 5.4
+        type: 
+          type: string
+          example: CH-Note
+        studentRef:
+          type: integer
+          format: int64
+
+
+    CourseExamTeacher:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: Projektarbeit
+        weight:
+          type: integer
+          format: float
+          example: 0.3
+        type:
+          type: string
+          example: Schritfliche Arbeit
+        avgGrades:
+          type: array
+          items:
+            $ref: '#/components/schemas/GradeType'
+    CourseExamStudent:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: Projektarbeit
+        weight:
+          type: integer
+          format: float
+          example: 0.3
+        type:
+          type: string
+          example: Schritfliche Arbeit
+        grade:
+          $ref: '#/components/schemas/GradeRes'
+          
+    GradeRes:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        date:
+          type: string
+          format: date-time
+        gradesPerType:
+          type: array
+          items:
+            $ref: '#/components/schemas/GradeType'
+        
+    GradeType:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: CH-Note
+        grade:
+          type: integer
+          format: float64
+          example: 4.3
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        classStartYear:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Max Muster
+        email: 
+          type: string
+          example: Max.Muster@hftm.ch
+        role:
+          type: string
+          example: Schueler
+    Fieldmanager:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Kurt Munter
+    Teacher:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Simeon Liniger
+        
+
+          
+      
