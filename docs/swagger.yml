@@ -1154,8 +1154,8 @@ components:
           example: Projektarbeit
         weight:
           type: integer
-          format: float
-          example: 0.3
+          format: int64
+          example: 3
         type:
           type: string
           example: Schritfliche Arbeit
@@ -1167,8 +1167,8 @@ components:
           example: Projektarbeit
         weight:
           type: integer
-          format: float
-          example: 0.3
+          format: int64
+          example: 3
         type:
           type: string
           example: Schritfliche Arbeit
@@ -1198,8 +1198,8 @@ components:
           example: Projektarbeit
         weight:
           type: integer
-          format: float
-          example: 0.3
+          format: int64
+          example: 3
         type:
           type: string
           example: Schritfliche Arbeit
@@ -1218,8 +1218,8 @@ components:
           example: Projektarbeit
         weight:
           type: integer
-          format: float
-          example: 0.3
+          format: int64
+          example: 3
         type:
           type: string
           example: Schritfliche Arbeit
