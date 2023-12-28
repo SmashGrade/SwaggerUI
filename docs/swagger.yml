@@ -1259,7 +1259,7 @@ components:
         id:
           type: integer
           format: int64
-        classStartYear:
+        curriculumStartYear:
           type: integer
           format: int64
         name:
