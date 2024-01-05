@@ -763,7 +763,7 @@ components:
         curriculumType:
           type: string
           example: Berufsbegleitend
-        isActiv:
+        isActive:
           type: boolean
           example: true
         startDate:
@@ -787,7 +787,7 @@ components:
         curriculumType:
           type: string
           example: Berufsbegleitend
-        isActiv:
+        isActive:
           type: boolean
           example: true
         startDate:
@@ -796,6 +796,9 @@ components:
         endDate:
           type: string
           format: date-time
+        description:
+          type: string
+          example: 2023 - Softwareentwicklung - Informatick
         fieldmanagers:
           type: array
           items:
@@ -816,7 +819,7 @@ components:
         curriculumType:
           type: string
           example: Berufsbegleitend
-        isActiv:
+        isActive:
           type: boolean
           example: true
         startDate:
@@ -912,7 +915,7 @@ components:
           example: Schnittstellen-Technologien
         number:
           type: string
-        isActiv:
+        isActive:
           type: boolean
           example: true
     ModuleRes:
@@ -929,7 +932,7 @@ components:
           example: Schnittstellen-Technologien
         number:
           type: string
-        isActiv:
+        isActive:
           type: boolean
           example: true
         studyStage:
@@ -949,7 +952,7 @@ components:
           example: Schnittstellen-Technologien
         number:
           type: string
-        isActiv:
+        isActive:
           type: boolean
           example: true
         valuationCategory:
