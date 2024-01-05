@@ -974,7 +974,15 @@ components:
           items:
             $ref: '#/components/schemas/StudyStage'
 
-
+    ModuleRef:
+      type: object
+      properties:
+        id: 
+          type: integer
+          format: uint
+        version:
+          type: integer
+          format: uint
 
 
     StudyStage:
@@ -1124,8 +1132,7 @@ components:
         moduleRef:
           type: array
           items:
-            oneOf:
-              - type: integer
+            $ref: '#/components/schemas/ModuleRef'
         teacherRef:
           type: array
           items:
