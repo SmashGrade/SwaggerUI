@@ -960,8 +960,7 @@ components:
         coursesRef:
           type: array
           items:
-            type: integer
-            format: int64
+            $ref: '#/components/schemas/CourseRef'
 
     ModuleFilter:
       type: object     
@@ -1153,6 +1152,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Teacher'
+    CourseRef:
+      type: object
+      properties:
+        id: 
+          type: integer
+          format: uint
+        version:
+          type: integer
+          format: uint
     ExamRes:
       type: object
       properties:
