@@ -320,6 +320,9 @@ paths:
       tags:
         - course
       operationId: putcourse
+      description:
+        If id from Exam is 0, it will create a new exam.
+        If the Combination from id and Version does not exist, it will create a new Entry.
       parameters:
         - name: id
           in: path
@@ -336,6 +339,8 @@ paths:
         '200':
           description: successful operation
     delete:
+      description:
+        If no Version is given in the Query, all Versions will be Deleted. To only Delete a specific Version, it must be given in the query.
       tags:
         - course
       operationId: deletecourse
@@ -345,7 +350,13 @@ paths:
           required: true
           schema:
             type: integer
-            format: int64
+            format: uint
+        - name: version
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: uint
       responses:
         '204':
           description: successful operation
@@ -942,7 +953,7 @@ components:
         courses:
           type: array
           items:
-            $ref: '#/components/schemas/CourseRes'
+            $ref: '#/components/schemas/CoursesRes'
 
     ModuleReq:
       type: object     
@@ -1051,7 +1062,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExamRes'
-        teachers:
+        teachedBy:
           type: array
           items:
             $ref: '#/components/schemas/Teacher'
@@ -1108,8 +1119,7 @@ components:
         moduleRef:
           type: array
           items:
-            oneOf:
-              - type: integer
+            $ref: '#/components/schemas/ModuleRef'
         teacherRef:
           type: array
           items:
@@ -1286,9 +1296,12 @@ components:
         email: 
           type: string
           example: Max.Muster@hftm.ch
-        role:
-          type: string
-          example: Schueler
+        roles:
+          type: array
+          items:
+            oneOf:
+              - type: string
+                example: schueler
     Fieldmanager:
       type: object
       properties:
