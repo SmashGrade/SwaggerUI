@@ -500,6 +500,7 @@ paths:
     post:
       tags:
         - exam
+      description: Fill Data into the exam_evalution Table
       operationId: postExamStudent
       parameters:
         - name: id
@@ -516,15 +517,23 @@ paths:
       responses:
         '202':
           description: successful operation
-  /exam/{id}/teacher:
+  /exam/{id}/{studentID}/teacher:
     post:
       tags:
         - exam
+      description: Fill Data into the exam_evalution Table
       operationId: postExamTeacher
       parameters:
         - name: id
           in: path
           required: true
+          schema:
+            type: integer
+            format: int64
+        - name: studentID
+          in: path
+          required: true
+          description: ID of Student
           schema:
             type: integer
             format: int64
@@ -1187,6 +1196,10 @@ components:
         type:
           type: string
           example: Schritfliche Arbeit
+        courseId:
+          type: integer
+        courseVersion:
+          type: integer
     ExamReq:
       type: object
       properties:
@@ -1200,6 +1213,10 @@ components:
         type:
           type: string
           example: Schritfliche Arbeit
+        courseId:
+          type: integer
+        courseVersion:
+          type: integer
     ExamReqStudent:
       type: object
       properties:
